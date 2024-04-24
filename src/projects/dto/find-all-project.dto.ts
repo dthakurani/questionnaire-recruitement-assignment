@@ -1,8 +1,8 @@
-import { ProjectType } from '../../../projects/projects.enum';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsOptional } from 'class-validator';
+import { IsOptional, IsEnum } from 'class-validator';
+import { ProjectType } from '../projects.enum';
 
-export class FindAllQuestionDto {
+export class FindAllProjectDto {
   @IsOptional()
   @IsEnum(ProjectType)
   @ApiProperty({ description: 'project type', required: false })

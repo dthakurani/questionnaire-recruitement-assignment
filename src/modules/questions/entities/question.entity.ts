@@ -7,8 +7,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
-import { QuestionType } from '../question.enum';
+import { ProjectType } from '../../../projects/projects.enum';
+import { ProjectQuestionMapping } from 'src/projects/entities/project-question-mapping.entity';
 
 @Entity('questions')
 export class Question extends BaseEntity {
@@ -21,9 +23,9 @@ export class Question extends BaseEntity {
   @Column({
     nullable: false,
     type: 'enum',
-    enum: QuestionType,
+    enum: ProjectType,
   })
-  type: QuestionType;
+  type: ProjectType;
 
   @CreateDateColumn({ name: 'created_at', nullable: false })
   createdAt: Timestamp;
@@ -33,4 +35,11 @@ export class Question extends BaseEntity {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Timestamp;
+
+  // Relations
+  @OneToMany(
+    () => ProjectQuestionMapping,
+    (projectQuestionMapping) => projectQuestionMapping.question,
+  )
+  questionProject: ProjectQuestionMapping[];
 }

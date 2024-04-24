@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { QuestionType } from './question.enum';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Question } from './entities/question.entity';

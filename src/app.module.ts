@@ -14,6 +14,7 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { GuardsModule } from './modules/guards/guard.module';
 import { QuestionsModule } from './modules/questions/questions.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { QuestionsModule } from './modules/questions/questions.module';
     CommonModule,
     AuthModule,
     QuestionsModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
