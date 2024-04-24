@@ -13,6 +13,7 @@ import { CommonModule } from './modules/common/common.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { GuardsModule } from './modules/guards/guard.module';
+import { QuestionsModule } from './modules/questions/questions.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { GuardsModule } from './modules/guards/guard.module';
     GuardsModule,
     CommonModule,
     AuthModule,
+    QuestionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

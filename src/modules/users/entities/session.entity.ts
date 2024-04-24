@@ -17,14 +17,14 @@ export class Session extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: false })
-  user_id: string;
+  @Column({ nullable: false, name: 'user_id' })
+  userId: string;
 
-  @Column({ nullable: false })
-  device_address: string;
+  @Column({ nullable: false, name: 'device_address' })
+  deviceAddress: string;
 
-  @Column({ nullable: false })
-  device_name: string;
+  @Column({ nullable: false, name: 'device_name' })
+  deviceName: string;
 
   @Column({ nullable: false, unique: true })
   token: string;

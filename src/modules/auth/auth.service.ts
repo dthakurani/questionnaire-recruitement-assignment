@@ -81,9 +81,9 @@ export class AuthService {
       );
 
       const session = this.sessionsRepository.create({
-        user_id: user.id,
-        device_address: deviceAddress,
-        device_name: uniqueDeviceName,
+        userId: user.id,
+        deviceAddress,
+        deviceName: uniqueDeviceName,
         token: refreshToken,
       });
 
@@ -137,7 +137,7 @@ export class AuthService {
 
     const session = await this.sessionsRepository.findOne({
       where: {
-        device_name: token.device_name,
+        deviceName: token.device_name,
         token: refreshToken,
       },
     });
@@ -192,7 +192,7 @@ export class AuthService {
     }
 
     await this.sessionsRepository.delete({
-      device_name: token.device_name,
+      deviceName: token.device_name,
     });
   }
 }

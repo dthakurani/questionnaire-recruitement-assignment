@@ -1,29 +1,29 @@
 import {
   BaseEntity,
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
+  Column,
   Timestamp,
+  CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
-import { Session } from './session.entity';
+import { QuestionType } from '../question.enum';
 
-@Entity('users')
-export class User extends BaseEntity {
+@Entity('questions')
+export class Question extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false })
-  name: string;
+  description: string;
 
-  @Column({ type: 'varchar' })
-  email: string;
-
-  @Column({ nullable: false })
-  password: string;
+  @Column({
+    nullable: false,
+    type: 'enum',
+    enum: QuestionType,
+  })
+  type: QuestionType;
 
   @CreateDateColumn({ name: 'created_at', nullable: false })
   createdAt: Timestamp;
@@ -33,9 +33,4 @@ export class User extends BaseEntity {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Timestamp;
-
-  // Relations
-
-  @OneToMany(() => Session, (session) => session.user)
-  sessions: Session[];
 }
