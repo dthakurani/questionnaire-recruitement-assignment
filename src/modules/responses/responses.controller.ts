@@ -7,13 +7,26 @@ import {
   Req,
   Res,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { ResponsesService } from './responses.service';
-import { CreateResponseDto } from './dto/create-response.dto';
+import {
+  CreateResponseDto,
+  CreateResponseUploadResponse,
+} from './dto/create-response.dto';
 import { CommonHelper } from '../common/common.helper';
 import { Request, Response } from 'express';
-import { FindAllResponseDto } from './dto/find-all-response.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  FindAllResponseDto,
+  ResponsesFindResponse,
+} from './dto/find-all-response.dto';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { AuthGuard } from '../guards/auth.guard';
 
 @ApiBearerAuth()
 @ApiTags('Responses')
@@ -27,7 +40,13 @@ export class ResponsesController {
     private commonHelper: CommonHelper,
   ) {}
 
+  @UseGuards(AuthGuard)
   @Post()
+  @ApiOkResponse({
+    type: CreateResponseUploadResponse,
+    description: 'Response for successful response recording',
+  })
+  @ApiOperation({ summary: 'Record responses for a project' })
   async create(
     @Req() req: Request,
     @Res() res: Response,
@@ -61,7 +80,13 @@ export class ResponsesController {
     }
   }
 
+  @UseGuards(AuthGuard)
   @Get()
+  @ApiOkResponse({
+    type: ResponsesFindResponse,
+    description: 'Response for finding responses',
+  })
+  @ApiOperation({ summary: 'Find responses for specific project' })
   async findAll(
     @Req() req: Request,
     @Res() res: Response,

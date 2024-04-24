@@ -8,13 +8,21 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { FindAllQuestionDto } from './dto/find-all-question.dto';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import {
+  FindAllQuestionDto,
+  QuestionResponse,
+} from './dto/find-all-question.dto';
 import { CommonHelper } from '../common/common.helper';
 import { Request, Response } from 'express';
 import { AuthGuard } from '../guards/auth.guard';
 
-@ApiBearerAuth()
+@ApiBearerAuth('Bearer')
 @ApiTags('Questions')
 @Controller({
   path: 'questions',
@@ -28,6 +36,10 @@ export class QuestionsController {
 
   @Get()
   @UseGuards(AuthGuard)
+  @ApiOkResponse({
+    type: QuestionResponse,
+    description: 'Question response',
+  })
   @ApiOperation({ summary: 'List all questions' })
   async login(
     @Req() req: Request,

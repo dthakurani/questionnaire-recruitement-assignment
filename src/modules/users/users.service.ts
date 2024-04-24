@@ -13,9 +13,6 @@ export class UsersService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
 
-    @InjectRepository(Session)
-    private readonly sessionsRepository: Repository<Session>,
-
     private bcryptService: BcryptService,
     private entityManager: EntityManager,
   ) {}

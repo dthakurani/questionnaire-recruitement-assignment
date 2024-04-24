@@ -69,6 +69,6 @@ export class S3Service {
 
       awsResponses.push(response);
     }
-    return { data: awsResponses };
+    return { awsResponses };
   }
 }

@@ -1,12 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EntityManager, Repository } from 'typeorm';
+import { EntityManager, ILike, Repository } from 'typeorm';
 import { User } from 'src/modules/users/entities/user.entity';
 import { Project } from './entities/project.entity';
 import { Question } from 'src/modules/questions/entities/question.entity';
 import { ProjectQuestionMapping } from './entities/project-question-mapping.entity';
 import { FindAllProjectDto } from './dto/find-all-project.dto';
+import { CustomException } from 'src/utils/custom-exception';
 
 @Injectable()
 export class ProjectsService {
@@ -24,6 +25,21 @@ export class ProjectsService {
   ) {}
   async create(user: User, body: CreateProjectDto) {
     const data = await this.entityManager.transaction(async (entityManager) => {
+      const projectExists = await this.projectsRepository.findOne({
+        where: {
+          name: ILike(body.name),
+          type: body.type,
+        },
+      });
+
+      if (projectExists) {
+        new CustomException().throwHttpError({
+          message: 'Project already exists!',
+          status: HttpStatus.CONFLICT,
+          errorKey: 'name,type',
+        });
+      }
+
       const project = await this.projectsRepository.save({
         ...body,
         userId: user.id,

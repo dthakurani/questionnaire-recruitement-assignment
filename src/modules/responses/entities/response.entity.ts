@@ -18,7 +18,7 @@ export class Response extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'project_question_mapping', type: 'uuid' })
+  @Column({ name: 'project_question_mapping_id', type: 'uuid' })
   projectQuestionMappingId: string;
 
   @Column({ name: 'user_id', type: 'uuid' })
@@ -41,7 +41,7 @@ export class Response extends BaseEntity {
     () => ProjectQuestionMapping,
     (projectQuestionMapping) => projectQuestionMapping.id,
   )
-  @JoinColumn({ name: 'project_question_mapping' })
+  @JoinColumn({ name: 'project_question_mapping_id' })
   projectQuestionMapping: ProjectQuestionMapping;
 
   @ManyToOne(() => User, (user) => user.id)

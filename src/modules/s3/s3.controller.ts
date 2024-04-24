@@ -9,21 +9,21 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { S3Service } from './s3.service';
-import { CreateS3Dto } from './dto/create-s3.dto';
+import { CreateS3Dto, S3UploadResponse } from './dto/create-s3.dto';
 import {
   ApiBearerAuth,
   ApiBody,
   ApiConsumes,
+  ApiOkResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { FindAllQuestionDto } from '../questions/dto/find-all-question.dto';
 import { Request, Response } from 'express';
 import { CommonHelper } from '../common/common.helper';
 import { AuthGuard } from '../guards/auth.guard';
 
-@ApiBearerAuth()
+@ApiBearerAuth('Bearer')
 @ApiTags('S3')
 @Controller({
   path: 's3',
@@ -39,6 +39,10 @@ export class S3Controller {
   @Post('file-upload')
   @UseInterceptors(FileFieldsInterceptor([{ name: 'files' }]))
   @ApiConsumes('multipart/form-data')
+  @ApiOkResponse({
+    type: S3UploadResponse,
+    description: 'S3 upload response',
+  })
   @ApiOperation({ summary: 'Upload files to the s3 storage' })
   @ApiBody({ type: CreateS3Dto })
   async login(
@@ -55,7 +59,7 @@ export class S3Controller {
       return this.commonHelper.apiResponseHandler({
         res,
         data,
-        status: HttpStatus.OK,
+        status: HttpStatus.CREATED,
       });
     } catch (error) {
       if (!error.errorMessage) {

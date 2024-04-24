@@ -35,10 +35,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe(validationOptions));
 
   const options = new DocumentBuilder()
-    .setTitle('Questionnaire-assignment')
+    .setTitle('Questionnaire Assignment')
     .setDescription(
       'The objective of this project is to create APIs that facilitate the submission of new questionnaires based on selected project types. These APIs should allow users to select a project type, retrieve questions specific to that type, and submit their responses, including text and file uploads.',
     )
+    .setVersion('1.0')
     .addBearerAuth(
       {
         type: 'http',

@@ -1,4 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { HttpStatus } from '@nestjs/common';
+
 import {
   IsNotEmpty,
   IsString,
@@ -45,4 +47,24 @@ export class CreateUserDto {
     },
   )
   password: string;
+}
+
+export class CreateUserResponse {
+  @ApiProperty({ description: 'API status', example: HttpStatus.CREATED })
+  status: number;
+
+  @ApiProperty({ description: 'Data object' })
+  data: {};
+
+  @ApiProperty({
+    description: 'Response message',
+    example: 'User created successfully!',
+  })
+  message: string;
+
+  @ApiProperty({
+    description: 'Timestamp of the response',
+    example: '2024-04-24T16:52:30.615Z',
+  })
+  timeStamp: string;
 }

@@ -7,7 +7,7 @@ import { BcryptService } from 'src/utils/bcrypt';
 import { Session } from './entities/session.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Session])],
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [UsersService, BcryptService],
 })

@@ -50,6 +50,7 @@ export class ResponsesService {
         text: value.text,
         files: value.files,
       };
+      response.userId = user.id;
       return response;
     });
 
@@ -68,20 +69,36 @@ export class ResponsesService {
           },
         },
         relations: ['projectQuestionMapping.question'],
+        select: {
+          id: true,
+          value: true as any,
+          projectQuestionMapping: {
+            id: true,
+            question: {
+              id: true,
+              description: true,
+              type: true,
+            },
+          },
+        },
       }),
 
-      await this.projectsRepository.findOne({
+      this.projectsRepository.findOne({
         where: {
           id: query.projectId,
+        },
+        select: {
+          id: true,
+          name: true,
+          type: true,
+          city: true,
         },
       }),
     ]);
 
     return {
-      data: {
-        project,
-        responses,
-      },
+      project,
+      responses,
     };
   }
 }

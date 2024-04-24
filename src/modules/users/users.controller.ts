@@ -1,11 +1,15 @@
 import { Controller, Post, Body, Req, Res, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CreateUserDto, CreateUserResponse } from './dto/create-user.dto';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CommonHelper } from 'src/modules/common/common.helper';
 import { Request, Response } from 'express';
 
-@ApiBearerAuth()
 @ApiTags('Users')
 @Controller({
   path: 'users',
@@ -18,6 +22,8 @@ export class UsersController {
   ) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create new user' })
+  @ApiOkResponse({ type: CreateUserResponse })
   async create(
     @Req() req: Request,
     @Res() res: Response,

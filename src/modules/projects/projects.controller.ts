@@ -12,14 +12,23 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
-import { CreateProjectDto } from './dto/create-project.dto';
+import {
+  CreateProjectDto,
+  CreateProjectResponse,
+} from './dto/create-project.dto';
 import { Request, Response } from 'express';
 import { CommonHelper } from 'src/modules/common/common.helper';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthGuard } from 'src/modules/guards/auth.guard';
-import { FindAllProjectDto } from './dto/find-all-project.dto';
+import { FindAllProjectDto, ProjectResponse } from './dto/find-all-project.dto';
+import { FindProjectResponse } from './dto/find-one-project.dto';
 
-@ApiBearerAuth()
+@ApiBearerAuth('Bearer')
 @ApiTags('Projects')
 @Controller({
   path: 'projects',
@@ -33,6 +42,11 @@ export class ProjectsController {
 
   @UseGuards(AuthGuard)
   @Post()
+  @ApiOkResponse({
+    type: CreateProjectResponse,
+    description: 'Project created response',
+  })
+  @ApiOperation({ summary: 'Create new Project' })
   async create(
     @Req() req: Request,
     @Res() res: Response,
@@ -67,6 +81,11 @@ export class ProjectsController {
 
   @UseGuards(AuthGuard)
   @Get()
+  @ApiOkResponse({
+    type: ProjectResponse,
+    description: 'Project response',
+  })
+  @ApiOperation({ summary: 'List all projects' })
   async findAll(
     @Req() req: Request,
     @Res() res: Response,
@@ -99,6 +118,11 @@ export class ProjectsController {
 
   @UseGuards(AuthGuard)
   @Get(':id')
+  @ApiOkResponse({
+    type: FindProjectResponse,
+    description: 'Project found response',
+  })
+  @ApiOperation({ summary: 'Find a project' })
   async findOne(
     @Req() req: Request,
     @Res() res: Response,
