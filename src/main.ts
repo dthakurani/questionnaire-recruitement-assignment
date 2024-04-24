@@ -5,16 +5,15 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 import validationOptions from './utils/validation-options';
-import { TAllConfigType } from './config/config.type';
+import { AllConfigType } from './config/config.type';
 import { SecuritySchemeObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import compression from 'compression';
 import helmet from 'helmet';
-import { EEnvironment } from './config/config.type';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  const configService = app.get(ConfigService<TAllConfigType>);
+  const configService = app.get(ConfigService<AllConfigType>);
 
   app.enableCors();
   app.use(compression());
@@ -37,7 +36,9 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('Questionnaire-assignment')
-    .setDescription('Questionnaire-assignment')
+    .setDescription(
+      'The objective of this project is to create APIs that facilitate the submission of new questionnaires based on selected project types. These APIs should allow users to select a project type, retrieve questions specific to that type, and submit their responses, including text and file uploads.',
+    )
     .addBearerAuth(
       {
         type: 'http',

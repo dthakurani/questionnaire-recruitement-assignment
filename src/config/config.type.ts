@@ -1,24 +1,30 @@
-export enum EEnvironment {
+export enum Environment {
   Local = 'local',
   Staging = 'staging',
   Development = 'development',
   Production = 'production',
 }
 
-export type TAppConfig = {
+export type AppConfig = {
   nodeEnv: string;
   port: number;
   apiPrefix: string;
 };
 
-export type TAuthConfig = {
+export type AuthConfig = {
   jwtSecret?: string;
   jwtAccessTokenExpiration?: string;
   jwtRefreshTokenExpiration?: string;
   cryptKey?: string;
 };
 
-export type TDatabaseConfig = {
+export type AwsConfig = {
+  accessKeyId: string;
+  secretAccessKey: string;
+  bucketName: string;
+};
+
+export type DatabaseConfig = {
   sqlUrl?: string;
   sqlType?: string;
   sqlHost?: string;
@@ -33,16 +39,17 @@ export type TDatabaseConfig = {
   sqlCa?: string;
   key?: string;
   cert?: string;
-  sqlLogging?: ESqlLogging;
+  sqlLogging?: SqlLogging;
 };
 
-export type TAllConfigType = {
-  app: TAppConfig;
-  auth: TAuthConfig;
-  database: TDatabaseConfig;
+export type AllConfigType = {
+  app: AppConfig;
+  auth: AuthConfig;
+  database: DatabaseConfig;
+  aws: AwsConfig;
 };
 
-export enum ESqlLogging {
+export enum SqlLogging {
   QUERY = 'query', // Logs all queries.
   ERROR = 'error', // Logs all failed queries.
   SCHEMA = 'schema', // Logs all schema build events.

@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as crypto from 'crypto-js';
-import { TAllConfigType } from '../config/config.type';
+import { AllConfigType } from '../config/config.type';
 
 @Injectable()
 export class CryptoService {
   private readonly cryptKey: string;
 
-  constructor(private readonly configService: ConfigService<TAllConfigType>) {
+  constructor(private readonly configService: ConfigService<AllConfigType>) {
     this.cryptKey = this.configService.getOrThrow('auth.cryptKey', {
       infer: true,
     });

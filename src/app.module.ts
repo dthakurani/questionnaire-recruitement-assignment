@@ -14,13 +14,16 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { GuardsModule } from './modules/guards/guard.module';
 import { QuestionsModule } from './modules/questions/questions.module';
-import { ProjectsModule } from './projects/projects.module';
+import { ProjectsModule } from './modules/projects/projects.module';
+import { S3Module } from './modules/s3/s3.module';
+import { ResponsesModule } from './modules/responses/responses.module';
+import awsConfig from './config/aws.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [databaseConfig, authConfig, appConfig],
+      load: [databaseConfig, authConfig, appConfig, awsConfig],
     }),
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
@@ -34,6 +37,8 @@ import { ProjectsModule } from './projects/projects.module';
     AuthModule,
     QuestionsModule,
     ProjectsModule,
+    S3Module,
+    ResponsesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

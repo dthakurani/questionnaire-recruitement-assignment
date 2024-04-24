@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-import { TDatabaseConfig } from './config.type';
+import { DatabaseConfig } from './config.type';
 import {
   IsOptional,
   IsInt,
@@ -84,7 +84,7 @@ class EnvironmentVariablesValidator {
   DATABASE_CERT: string;
 }
 
-export default registerAs<TDatabaseConfig>('database', () => {
+export default registerAs<DatabaseConfig>('database', () => {
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {

@@ -1,20 +1,12 @@
 import { registerAs } from '@nestjs/config';
-import { TAppConfig } from './config.type';
+import { AppConfig } from './config.type';
 import validateConfig from 'src/utils/validate-config';
-import {
-  IsEnum,
-  IsInt,
-  IsOptional,
-  IsString,
-  IsUrl,
-  Max,
-  Min,
-} from 'class-validator';
-import { EEnvironment } from './config.type';
+import { IsEnum, IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import { Environment } from './config.type';
 
 class EnvironmentVariablesValidator {
-  @IsEnum(EEnvironment)
-  NODE_ENV: EEnvironment;
+  @IsEnum(Environment)
+  NODE_ENV: Environment;
 
   @IsInt()
   @Min(0)
@@ -27,7 +19,7 @@ class EnvironmentVariablesValidator {
   API_PREFIX: string;
 }
 
-export default registerAs<TAppConfig>('app', () => {
+export default registerAs<AppConfig>('app', () => {
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {

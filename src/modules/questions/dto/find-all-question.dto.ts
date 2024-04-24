@@ -1,4 +1,4 @@
-import { ProjectType } from '../../../projects/projects.enum';
+import { ProjectType } from '../../projects/projects.enum';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsOptional } from 'class-validator';
 

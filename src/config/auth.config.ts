@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-import { TAuthConfig } from './config.type';
+import { AuthConfig } from './config.type';
 import { IsString } from 'class-validator';
 import validateConfig from 'src/utils/validate-config';
 
@@ -17,7 +17,7 @@ class EnvironmentVariablesValidator {
   CRYPT_KEY: string;
 }
 
-export default registerAs<TAuthConfig>('auth', () => {
+export default registerAs<AuthConfig>('auth', () => {
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {

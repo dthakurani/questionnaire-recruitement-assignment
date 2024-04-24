@@ -1,4 +1,4 @@
-import { ProjectType } from 'src/projects/projects.enum';
+import { ProjectType } from 'src/modules/projects/projects.enum';
 import {
   BaseEntity,
   Column,
