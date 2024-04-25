@@ -7,7 +7,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { CommonHelper } from 'src/modules/common/common.helper';
+import { CommonHelper } from '../../modules/common/common.helper';
 import { Request, Response } from 'express';
 
 @ApiTags('Users')

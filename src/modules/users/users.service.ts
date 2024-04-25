@@ -3,9 +3,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { EntityManager, Repository } from 'typeorm';
-import { BcryptService } from 'src/utils/bcrypt';
-import { Session } from './entities/session.entity';
-import { CustomException } from 'src/utils/custom-exception';
+import { BcryptService } from '../../utils/bcrypt';
+import { CustomException } from '../../utils/custom-exception';
 
 @Injectable()
 export class UsersService {

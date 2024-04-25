@@ -17,14 +17,14 @@ import {
   CreateProjectResponse,
 } from './dto/create-project.dto';
 import { Request, Response } from 'express';
-import { CommonHelper } from 'src/modules/common/common.helper';
+import { CommonHelper } from '../../modules/common/common.helper';
 import {
   ApiBearerAuth,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthGuard } from 'src/modules/guards/auth.guard';
+import { AuthGuard } from '../../modules/guards/auth.guard';
 import { FindAllProjectDto, ProjectResponse } from './dto/find-all-project.dto';
 import { FindProjectResponse } from './dto/find-one-project.dto';
 

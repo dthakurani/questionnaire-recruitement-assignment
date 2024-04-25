@@ -3,8 +3,7 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { BcryptService } from 'src/utils/bcrypt';
-import { Session } from './entities/session.entity';
+import { BcryptService } from '../../utils/bcrypt';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],

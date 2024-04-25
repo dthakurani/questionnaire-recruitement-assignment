@@ -1,4 +1,4 @@
-import { ProjectType } from 'src/modules/projects/projects.enum';
+import { ProjectType } from '../../../modules/projects/projects.enum';
 import {
   BaseEntity,
   Column,
@@ -13,7 +13,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ProjectQuestionMapping } from './project-question-mapping.entity';
-import { User } from 'src/modules/users/entities/user.entity';
+import { User } from '../../../modules/users/entities/user.entity';
 
 @Entity('projects')
 export class Project extends BaseEntity {

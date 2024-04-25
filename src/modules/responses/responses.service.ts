@@ -3,7 +3,7 @@ import { CreateResponseDto } from './dto/create-response.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Not, Repository } from 'typeorm';
 import { ProjectQuestionMapping } from '../projects/entities/project-question-mapping.entity';
-import { CustomException } from 'src/utils/custom-exception';
+import { CustomException } from '../../utils/custom-exception';
 import { Response } from './entities/response.entity';
 import { FindAllResponseDto } from './dto/find-all-response.dto';
 import { User } from '../users/entities/user.entity';

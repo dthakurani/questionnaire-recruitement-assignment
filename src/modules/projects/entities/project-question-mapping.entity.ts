@@ -11,7 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Project } from './project.entity';
-import { Question } from 'src/modules/questions/entities/question.entity';
+import { Question } from '../../../modules/questions/entities/question.entity';
 
 @Entity('project_question_mapping')
 export class ProjectQuestionMapping extends BaseEntity {

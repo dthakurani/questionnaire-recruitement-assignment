@@ -10,7 +10,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { ProjectType } from '../../projects/projects.enum';
-import { ProjectQuestionMapping } from 'src/modules/projects/entities/project-question-mapping.entity';
+import { ProjectQuestionMapping } from '../../../modules/projects/entities/project-question-mapping.entity';
 
 @Entity('questions')
 export class Question extends BaseEntity {

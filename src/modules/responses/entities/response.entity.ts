@@ -10,8 +10,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { ProjectQuestionMapping } from 'src/modules/projects/entities/project-question-mapping.entity';
-import { User } from 'src/modules/users/entities/user.entity';
+import { ProjectQuestionMapping } from '../../../modules/projects/entities/project-question-mapping.entity';
+import { User } from '../../../modules/users/entities/user.entity';
 
 @Entity('responses')
 export class Response extends BaseEntity {

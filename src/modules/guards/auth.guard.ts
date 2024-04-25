@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import { CryptoService } from '../../utils/crypto';
-import { CustomException } from 'src/utils/custom-exception';
+import { CustomException } from '../../utils/custom-exception';
 import { ConfigService } from '@nestjs/config';
 import { User } from '../users/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';

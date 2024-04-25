@@ -1,8 +1,8 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { AllConfigType } from 'src/config/config.type';
+import { AllConfigType } from '../../config/config.type';
 import { S3 } from 'aws-sdk';
-import { CustomException } from 'src/utils/custom-exception';
+import { CustomException } from '../../utils/custom-exception';
 
 @Injectable()
 export class S3Service {
